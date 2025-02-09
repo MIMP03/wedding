@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Evento</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+        }
+        img {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Aplicar retraso a cada imagen secuencialmente */
+        img:nth-child(1) { animation-delay: 0.2s; }
+        img:nth-child(2) { animation-delay: 0.4s; }
+        img:nth-child(3) { animation-delay: 0.6s; }
+        img:nth-child(4) { animation-delay: 0.8s; }
+        img:nth-child(5) { animation-delay: 1.0s; }
+        img:nth-child(6) { animation-delay: 1.2s; }
+        img:nth-child(7) { animation-delay: 1.4s; }
+
+        /* Estilos para el contador */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .countdown-item {
+            background: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            min-width: 80px;
+        }
+        .countdown-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+        }
+        .countdown-label {
+            font-size: 0.8em;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        /* Estilos para el contenedor y botones */
+        .lugar-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        .lugar-buttons {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+        }
+
+        .lugar-button {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 4px 8px;
+            background-color: transparent;
+            border: 1px solid #000000;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 9px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-family: Arial, sans-serif;
+            letter-spacing: 1px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* Posiciones individuales para cada botón */
+        .lugar-button:nth-child(1) {
+            top: 30%;
+        }
+
+        .lugar-button:nth-child(2) {
+            top: 60%;
+        }
+
+        .lugar-button:nth-child(3) {
+            top: 88%;
+        }
+
+        .lugar-button:hover {
+            background-color: #000000;
+            color: #ffffff;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Ajustes para móviles */
+        @media (max-width: 768px) {
+            .lugar-button {
+                padding: 3px 7px;
+                font-size: 8px;
+            }
+        }
+
+        /* Mantener el ajuste específico para el segundo botón */
+        .lugar-button:nth-child(2) {
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio con múltiples fuentes -->
+    <audio id="miAudio" preload="auto" style="display: none;">
+        <source src="hasta-mi-final.mp3" type="audio/mpeg">
+        <source src="./hasta-mi-final.mp3" type="audio/mpeg">
+        <source src="../hasta-mi-final.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Contador -->
+    <div class="countdown">
+        <div class="countdown-item">
+            <div id="days" class="countdown-number">00</div>
+            <div class="countdown-label">Días</div>
+        </div>
+        <div class="countdown-item">
+            <div id="hours" class="countdown-number">00</div>
+            <div class="countdown-label">Horas</div>
+        </div>
+        <div class="countdown-item">
+            <div id="minutes" class="countdown-number">00</div>
+            <div class="countdown-label">Minutos</div>
+        </div>
+        <div class="countdown-item">
+            <div id="seconds" class="countdown-number">00</div>
+            <div class="countdown-label">Segundos</div>
+        </div>
+    </div>
+
+    <!-- Imágenes en orden -->
+    <img src="inicio.png" alt="Inicio">
+    <img src="frase.png" alt="Frase">
+    <img src="tercero.png" alt="Tercero">
+    <img src="itinerario.png" alt="Itinerario">
+    <div class="lugar-container">
+        <img src="lugar.png" alt="Lugar">
+        <div class="lugar-buttons">
+            <button class="lugar-button" onclick="window.open('https://www.google.com/maps/place/Iglesia+de+Cayma,+C.+Arrospide,+Arequipa+04017/@-16.3811832,-71.5461216,17z/data=!3m1!4b1!4m6!3m5!1s0x91424a3f98a45b4d:0xbe03656ab0a76a16!8m2!3d-16.381244!4d-71.5461524!16s%2Fg%2F11b8tf95_n?entry=ttu&g_ep=EgoyMDI1MDIwNS4xIKXMDSoASAFQAw%3D%3D')">Ver mapa</button>
+            <button class="lugar-button" onclick="window.open('https://www.google.com/maps/place/Palacio+de+Goyeneche,+Valencia,+Sachaca+04013/@-16.4295925,-71.5667389,17z/data=!3m1!4b1!4m6!3m5!1s0x91424a9f55be6c17:0xe3b10f624af7c921!8m2!3d-16.4295925!4d-71.5667389!16zL20vMDU1dzQw?entry=ttu&g_ep=EgoyMDI1MDIwNS4xIKXMDSoASAFQAw%3D%3D')">Ver mapa</button>
+            <button class="lugar-button" onclick="window.open('https://api.whatsapp.com/send?phone=+51959758610&text=Quiero%20confirmar%20mi%20asistencia%20a%20la%20boda%20de%20Yhomira%20y%20Enmanuel')">Confirmar asistencia</button>
+        </div>
+    </div>
+    <img src="regalos.png" alt="Regalos">
+    <img src="final.png" alt="Final">
+
+    <audio id="background-music" loop>
+        <source src="./assets/music/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="music-toggle" class="music-toggle">
+        <i class="fas fa-volume-up"></i>
+    </button>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('miAudio');
+            let audioInitialized = false;
+
+            function initAudio() {
+                if (!audioInitialized) {
+                    audio.volume = 1.0; // Volumen al máximo
+                    audio.loop = true;
+                    
+                    const playPromise = audio.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            audioInitialized = true;
+                            console.log('Audio iniciado con éxito');
+                        }).catch(error => {
+                            console.log('Reproducción automática bloqueada, esperando interacción del usuario');
+                        });
+                    }
+                }
+            }
+
+            // Intentar reproducir inmediatamente
+            initAudio();
+
+            // Intentar reproducir con diferentes tipos de interacción
+            const startAudioOnInteraction = () => {
+                initAudio();
+                // Remover los event listeners una vez que el audio comience
+                ['click', 'touchstart', 'scroll', 'keydown'].forEach(event => {
+                    document.removeEventListener(event, startAudioOnInteraction);
+                });
+            };
+
+            // Agregar múltiples event listeners para diferentes tipos de interacción
+            ['click', 'touchstart', 'scroll', 'keydown'].forEach(event => {
+                document.addEventListener(event, startAudioOnInteraction);
+            });
+
+            // Manejar cuando el usuario cambia de pestaña
+            document.addEventListener('visibilitychange', function() {
+                if (!document.hidden && audioInitialized) {
+                    audio.play();
+                }
+            });
+        });
+
+        // Código del contador
+        function updateCountdown() {
+            const targetDate = new Date('April 5, 2025 11:30:00').getTime();
+            
+            function update() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    document.querySelector('.countdown').innerHTML = "¡El evento ha comenzado!";
+                }
+            }
+
+            update();
+            const interval = setInterval(update, 1000);
+        }
+
+        updateCountdown();
+    </script>
+</body>
+</html>
